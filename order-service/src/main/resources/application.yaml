@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1/
+
+spring:
+  application:
+    name: order-service
+
+  kafka:
+    bootstrap-servers: localhost:9094
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer:  org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+        acks: all
+        retries: 3
+  servlet:
+    encoding:
+      charset: UTF-8
+
+kafka:
+  topics:
+    orders: orders-topic
